@@ -5,8 +5,7 @@ import Lenis from 'lenis';
 
 /**
  * Lenis-driven smooth scroll. Respects prefers-reduced-motion by
- * falling back to native scroll. Exposes the instance on window for
- * GSAP ScrollTrigger integration elsewhere.
+ * falling back to native scroll.
  */
 export default function SmoothScroll({
   children,

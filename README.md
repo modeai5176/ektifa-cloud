@@ -1,23 +1,16 @@
-# EKTIFA — A Contemporary Emirati Maison of Chocolate & Honey
+# EKTIFA — Artisanal Chocolate & Honey
 
-A world class luxury website concept and interactive frontend for EKTIFA, an
-Emirati maison of exceptional artisanal chocolate and honey. This is not an
-ecommerce store. It is a digital maison, a private atelier and a contemporary
-Emirati gallery, built to make the visitor feel they have entered a private
-world before they ever feel they are shopping.
-
-The experience follows a deliberate arc:
-
-> PLACE → STORY → MATERIAL → CRAFT → COLLECTION → CREATION → ACQUISITION
+A light, minimal, product-forward website for EKTIFA, an Emirati house of
+artisanal chocolate and honey. The site presents the two real product lines —
+**QAND** chocolate and **AL FAYA** honey — with real product photography, a
+clean shop, and calm, subtle motion only.
 
 ## Tech stack
 
 - Next.js 14 (App Router) + TypeScript
-- Tailwind CSS (custom restrained Emirati palette and type scale)
-- Framer Motion (reveals, parallax, page motion)
-- GSAP + ScrollTrigger (the pinned Craft manufacture sequence)
-- React Three Fiber + Three.js + Drei (the hero chocolate surface and the 3D box atelier)
-- Lenis (smooth, confident scroll)
+- Tailwind CSS (warm, light brand palette and type scale)
+- Framer Motion (subtle on-scroll fade reveals and the header)
+- Lenis (unobtrusive smooth scroll, disabled for reduced motion)
 
 ## Getting started
 
@@ -29,87 +22,44 @@ npm run start    # serve the production build
 npm run lint
 ```
 
-## The experience
+## The site
 
-### Homepage (`/`)
+| Route | Page |
+|-------|------|
+| `/` | Home — hero, QAND, AL FAYA, ingredients, the house, shop CTA |
+| `/collection` | Shop — all products grouped by line (QAND, AL FAYA) |
+| `/collection/[slug]` | Product detail — gallery, options, details |
 
-| # | Section | Component |
-|---|---------|-----------|
-| 01 | The Arrival — cinematic 3D tempered-chocolate hero | `sections/Arrival` → `hero/HeroScene` + `hero/ChocolateSurface` |
-| 02 | Place — abstract procedural desert landscape, parallax | `sections/Place` |
-| 03 | The Material — pinned horizontal macro gallery | `sections/MaterialGallery` + `ui/MacroSurface` |
-| 04 | The House — editorial story sequence | `sections/TheHouse` |
-| 05 | Craft — GSAP-pinned atelier with material microscope | `sections/CraftSection` |
-| 06 | Collection — collectible objects, subtle 3D hover | `sections/CollectionShowcase` + `sections/CollectionObject` |
-| 08 | Honey — immersive amber world, scroll-driven droplet | `sections/HoneyChapter` |
-| 09 | Origin — editorial interactive atlas | `sections/OriginAtlas` |
-| 10 | The EKTIFA Creation — gateway to the atelier | `sections/CreationCTA` |
+## Products
 
-### Collection detail (`/collection/[slug]`) — Section 07
+- **QAND** (`قَنْد`) — chocolate gift boxes in three colourways: Oasis Olive,
+  Desert Sand, Coast Pearl.
+- **AL FAYA** (`الفاية`) — raw honey from native trees: Ghaf, Samar, Sidr, plus
+  a three-bottle leather gift set (The Trio).
 
-Luxury-object product presentation (`product/ProductStory`): THE OBJECT, THE
-STORY, THE COMPOSITION, THE FLAVOURS, THE MATERIALS, THE CRAFT, THE
-PRESENTATION, ACQUIRE — with a restrained purchase CTA, never an ecommerce
-grid. Collections: `majlis`, `diwan`, `qasr`.
+All product and page content is data-driven in `src/data/products.ts`, so the
+catalogue, prices and copy can be edited without touching components.
 
-### The Atelier — 3D configurator (`/create`)
+## Assets
 
-A highly polished React Three Fiber chocolate box configurator
-(`configurator/*`):
+Real brand and product imagery lives in `public/images/`:
 
-- **Center** — photoreal-leaning 3D box (`BoxModel` in `ConfiguratorCanvas`)
-- **Left** — vertical progress navigation (`ConfiguratorSidebar`)
-- **Right / bottom sheet** — contextual configuration panel
-- **Bottom** — live creation summary (`CreationSummary`)
-
-Six steps: `01 ARCHITECTURE · 02 MATERIAL · 03 CHOCOLATES · 04 ARRANGEMENT ·
-05 PERSONALISE · 06 REVEAL`.
-
-Behaviour: PBR-style materials respond to light; the lid opens with weight;
-chocolates animate physically into their slots; `AUTO CURATE` composes a
-balanced arrangement; engraving appears physically on the lid; the reveal
-pulls back, closes the UI and presents the finished creation. Controlled
-orbit, ground shadows, graceful WebGL fallback, reduced-motion support and
-a mobile bottom-sheet interface are all included.
-
-## Architecture notes
-
-- **Data is separated from presentation.** All product, material, chocolate,
-  craft and origin content lives in `src/data/*` and is configuration-driven,
-  so it can be swapped for real EKTIFA data without touching components.
-- **Creation state** is a typed reducer + context (`src/lib/creation.tsx`).
-- **Components are reusable** and match the brief:
-  `HeroScene`, `MaterialGallery`, `CraftSection`, `CollectionObject`,
-  `ProductStory`, `OriginAtlas`, `Configurator`, `ConfiguratorSidebar`,
-  `ChocolateSelector`, `MaterialSelector`, `EngravingPanel`, `CreationSummary`,
-  `RevealScene`.
-- **Performance**: Three.js / Drei are dynamically imported (`ssr: false`) so
-  they never enter the initial bundle; the 3D stage lazy-loads with a graceful
-  fallback when WebGL is unavailable.
+- `qand/` — chocolate box photography (small / medium / large)
+- `al_faya/` — honey bottles, leather boxes and bags
+- `ingredients/`, `environment/`, `textures/` — supporting photography
+- `ektifa_logo_h.svg`, `ektifa_logo_v.svg` — the EKTIFA marks
 
 ## Design system
 
-Restrained, material-led palette (no excessive gold, no generic gradients):
-deep cacao, obsidian, warm desert sand, bone / ivory, natural stone, date
-brown, muted olive, antique brass, pearl and honey amber. Typography pairs an
-editorial display serif (Cormorant Garamond) with a refined grotesk (Jost),
-with Arabic set in Reem Kufi. Tokens live in `tailwind.config.ts` and
-`src/app/globals.css`.
+Warm, light, material-led palette drawn from the real EKTIFA brand: paper
+off-white grounds, warm near-black ink, and brand accents in sage green, honey
+gold, terracotta and olive. Tokens live in `tailwind.config.ts` and
+`src/app/globals.css`. Typography pairs an editorial serif (Cormorant Garamond)
+with a clean grotesk (Jost); Arabic is set in Reem Kufi.
 
-## Placeholder assets
+## Accessibility & motion
 
-The brand logos (`public/brand/ektifa-logo-h.svg`, `ektifa-logo-v.svg`) are
-the real EKTIFA marks. Every other visual is generated procedurally
-(gradients, SVG, canvas, Three.js geometry) rather than using stock imagery —
-so there are no stock-photo placeholders to replace. When real macro
-photography and product renders are available, they can be dropped into
-`MacroSurface`, the collection objects and the configurator materials, which
-are already structured to accept image/texture sources.
-
-## Accessibility & responsiveness
-
-- Respects `prefers-reduced-motion` across Lenis, Framer Motion, GSAP and R3F.
-- Accessible labels on all interactive controls; keyboard-navigable; visible
-  focus states; strong contrast on dark grounds.
-- Desktop is the flagship experience; tablet and mobile recompose (bottom
-  sheets, restacked editorial) rather than simply stacking desktop sections.
+- Respects `prefers-reduced-motion` across Lenis and Framer Motion.
+- Reveals are a single, gentle fade-up — no pinned scroll sequences or 3D.
+- Accessible labels on interactive controls; visible focus states; strong
+  contrast on the light ground.
