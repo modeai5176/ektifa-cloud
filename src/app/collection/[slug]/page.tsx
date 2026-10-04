@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { collections, getCollection } from '@/data/collections';
-import ProductStory from '@/components/product/ProductStory';
+import { products, getProduct } from '@/data/products';
+import ProductDetail from '@/components/product/ProductDetail';
 
 export function generateStaticParams() {
-  return collections.map((c) => ({ slug: c.slug }));
+  return products.map((p) => ({ slug: p.slug }));
 }
 
 export function generateMetadata({
@@ -12,20 +12,16 @@ export function generateMetadata({
 }: {
   params: { slug: string };
 }): Metadata {
-  const collection = getCollection(params.slug);
-  if (!collection) return { title: 'EKTIFA' };
+  const product = getProduct(params.slug);
+  if (!product) return { title: 'EKTIFA' };
   return {
-    title: `${collection.name} — EKTIFA`,
-    description: collection.essence,
+    title: `${product.name} — ${product.line} · EKTIFA`,
+    description: product.description,
   };
 }
 
-export default function CollectionDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const collection = getCollection(params.slug);
-  if (!collection) notFound();
-  return <ProductStory collection={collection} />;
+export default function ProductPage({ params }: { params: { slug: string } }) {
+  const product = getProduct(params.slug);
+  if (!product) notFound();
+  return <ProductDetail product={product} />;
 }

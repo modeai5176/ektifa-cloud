@@ -27,26 +27,27 @@ const arabic = Reem_Kufi({
 });
 
 export const metadata: Metadata = {
-  title: 'EKTIFA — A Contemporary Emirati Maison of Chocolate & Honey',
+  title: 'EKTIFA — Artisanal Chocolate & Honey',
   description:
-    'EKTIFA is a contemporary Emirati maison of exceptional artisanal chocolate and honey. Crafted in the Emirates. A private world of material, craft and refined gifting.',
+    'EKTIFA — artisanal chocolate and honey crafted in the Emirates. QAND chocolate and AL FAYA honey, made with native ingredients.',
   keywords: [
     'EKTIFA',
+    'QAND',
+    'AL FAYA',
     'Emirati chocolate',
-    'luxury chocolate',
     'artisanal honey',
-    'UAE maison',
-    'bespoke gifting',
+    'Sharjah',
+    'UAE gifting',
   ],
   openGraph: {
-    title: 'EKTIFA — A Contemporary Emirati Maison',
-    description: 'Crafted in the Emirates. Chocolate & honey as a private world.',
+    title: 'EKTIFA — Artisanal Chocolate & Honey',
+    description: 'Chocolate and honey, crafted in the Emirates.',
     type: 'website',
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0b0a09',
+  themeColor: '#f6f3ec',
   width: 'device-width',
   initialScale: 1,
 };
@@ -61,7 +62,7 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${sans.variable} ${arabic.variable}`}
     >
-      <body className="bg-obsidian text-bone antialiased">
+      <body className="bg-paper text-ink antialiased">
         <SmoothScroll>
           <Navigation />
           <main>{children}</main>
